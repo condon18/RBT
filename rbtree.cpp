@@ -34,7 +34,19 @@ void RBTree::del(NodePtr current)
 void RBTree :: leftRotate( NodePtr x )
 {
    NodePtr y = x->right ;
+    node=x;
 // You write the rest of this
+    if (root != node) {
+        if (node->p->left ==node)
+            node->p->left = node;
+        else
+            node->p-->right = node->right;
+    } else
+      root = node;
+
+
+    node->right = node->left;
+    node->left =node ;
 }
 
 void RBTree :: rightRotate( NodePtr x )
