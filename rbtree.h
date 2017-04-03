@@ -39,6 +39,7 @@ public:
     void ShowTree( NodePtr x, int depth );
     void ShowTree( int depth ) { ShowTree(root, depth); }
     void PrintTree();
+    void Traverse();
     
 private:
     
