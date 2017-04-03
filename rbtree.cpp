@@ -37,9 +37,10 @@ void RBTree :: leftRotate( NodePtr x )
     node=x;
 // You write the rest of this
     if (root != node) {
-        if (node->p->left ==node)
+        if (node->p->left ==node) //'b
             node->p->left = node;
-        else //A             node->p-->right = node->right;
+        else //A
+            node->p-->right = node->right;
     } else
       root = node;
 
