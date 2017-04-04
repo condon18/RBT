@@ -12,9 +12,7 @@ int main(int argc, char* argv[])
   
   theTree.RBinsert(2);
   
-  //theTree.RBinsert(3);
-  
-  //theTree.Traverse();
+  theTree.RBinsert(3);
 
   return 0;
 }

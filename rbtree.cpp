@@ -36,21 +36,26 @@ void RBTree :: leftRotate( NodePtr x )
    NodePtr y = x->right ;
    NodePtr node=x;
 // You write the rest of this
+    cout << "if root != node\n";
     if (root != node) {
-        if (root->left ==node) //'b
+      cout << "if root->left ==node\n";
+        if (root->left ==node) { //'b
             node->p = node->left;
-        else if (root->left->left == node || root->left->right == node) { //C
-          node->p = node->left;
         }
-        else { //A
-          node->p->right = node->right;
+        else if (root->left != NULL) { //if grandchildren exist
+          if (root->left->left == node || root->left->right == node) { //C
+            node->p = node->left;
+          }
         }
-    } else
-      root = node;
-
-
+    } else {//A
+      root = y;
+      y -> right = x;
+    }
+    
+    /*cout << "y->left\n";
     node->right = y->left;
-    node->left =node ;
+    cout << "node->left =node\n";
+    node->left =node ;*/
 }
 
 void RBTree :: rightRotate( NodePtr x )
@@ -58,21 +63,18 @@ void RBTree :: rightRotate( NodePtr x )
    NodePtr y = x->left ;
    NodePtr node=x;
 // You write the rest of this
-    if (root != node) {
+    /*if (root != node) {
         if (root->right ==node) //'b
             node->p = node->right;
         else if (root->right->right == node || root->right->left == node) { //C
           node->p = node->right;
         }
-        else { //A
-          node->p->left = node->left;
-        }
-    } else
-      root = node;
+    } else //A
+      node->p->left = node->left;
 
 
     node->left = y->right;
-    node->right =node ;
+    node->right =node ;*/
 }
 
 void RBTree :: insertFixup( NodePtr z )
@@ -111,11 +113,12 @@ void RBTree :: insertFixup( NodePtr z )
        }
     } else { //if z's parent is a right child
        // You fill this in - with left and right interchanged
-       cout << "if uncle is Null or black\n";
+       cout << "if uncle is Null or black:\n";
        if (z -> p -> p -> left == NULL || z -> p -> p -> left -> color == 'B') { //uncle is Null or Black (Case B,C)
-         cout << "if z is a right child\n";
+         cout << "if z is a right child:\n";
          if (z == z -> p -> right) { //if z is a right child (Case B)
            //single Rotation
+           cout << "left single rotate:\n";
            leftRotate(root);
            root -> color = 'B';
            root -> left -> color = 'R';
@@ -314,7 +317,7 @@ void RBTree :: inorderTreeWalk( NodePtr x )
 {
    if ( x != NULL ) {
       inorderTreeWalk( x->left ) ;
-      cout << x->key << " " ;
+      cout << "/" << x->key << " \\" ;
       inorderTreeWalk( x->right ) ;
    }
 }
@@ -338,10 +341,10 @@ void RBTree :: ShowTree( NodePtr x, int depth )
 }
 
 //traverses the tree and prints it out
-void RBTree :: Traverse() {
-  cout << (root -> key);
+//void RBTree :: Traverse() {
+//  cout << (root -> key);
   
   //if (n -> left == NULL) { //if no left child
   //  cout
   //}
-}
+//}
